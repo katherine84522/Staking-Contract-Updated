@@ -1,7 +1,7 @@
 const { buildModule } = require("@nomicfoundation/hardhat-ignition/modules");
  
 
-module.exports = buildModule("RCCStakeModuleV5",(m) => { 
+module.exports = buildModule("RCCStakeModuleV7",(m) => { 
 
   const deployer = '0x0CC36130d54955D1F49cB82B52E196b2D6580314'; 
  

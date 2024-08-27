@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "@openzeppelin/contracts/utils/Address.sol";
 import "@openzeppelin/contracts/utils/math/Math.sol";
-
+import "hardhat/console.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol";
@@ -455,14 +455,15 @@ contract RCCStake is
     /**
      * @notice Deposit staking nativeCurrency for RCC rewards
      */
-    function depositnativeCurrency(uint256 nativeCurrency_PID, uint256 _amount) public whenNotPaused() payable {
-        Pool storage pool_ = pool[nativeCurrency_PID];
+    function depositnativeCurrency() public whenNotPaused() payable {
+        Pool storage pool_ = pool[0];
         require(pool_.stTokenAddress == address(0x0), "invalid staking token address");
 
         uint256 _amount = msg.value;
         require(_amount >= pool_.minDepositAmount, "deposit amount is too small");
 
-        _deposit(nativeCurrency_PID, _amount);
+        console.log("Contract balance:", address(this).balance);
+        _deposit(0, _amount);
     }
 
     /**
